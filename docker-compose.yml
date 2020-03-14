@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   mongodb:
@@ -7,3 +7,11 @@ services:
       - ./mongodb:/data/db
     ports:
       - 27017:27017
+  
+  collector:
+    build:
+      context: ./collector
+    image: tweet-collector:0.1
+    depends_on:
+      - mongodb
+    env_file: .env
