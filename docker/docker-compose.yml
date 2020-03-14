@@ -15,3 +15,7 @@ services:
     depends_on:
       - mongodb
     env_file: .env
+    healthcheck:
+      test: ['CMD', 'python', 'check.py']
+      timeout: 10s
+      retries: 2

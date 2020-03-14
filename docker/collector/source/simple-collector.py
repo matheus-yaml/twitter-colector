@@ -1,6 +1,7 @@
 import tweepy
 import os
 from pymongo import MongoClient
+import time
 
 
 def get_connection():
@@ -25,3 +26,6 @@ if __name__ == '__main__':
     connection = get_connection()
     run(connection)
     print('stopping...')
+
+#temporarizador para dar tempo de observar que o status do container está como health
+time.sleep(60)
