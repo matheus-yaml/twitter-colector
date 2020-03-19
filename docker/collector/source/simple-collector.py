@@ -15,7 +15,7 @@ def get_api():
 
 def run(database_connection):
     api = get_api()
-    tweets = api.search(q="belo horizonte", count=50, result_type="mixed")
+    tweets = api.search(q= os.environ['SEARCH'], count=50, result_type="mixed")
     for tweet in tweets:
         print(tweet.text)
         database_connection.insert_one(tweet._json)
