@@ -19,3 +19,15 @@ services:
       test: ['CMD', 'python', 'check.py']
       timeout: 10s
       retries: 2
+
+  streaming:
+    build:
+      context: ./streaming-collector
+    image: streaming-collector:0.1
+    depends_on:
+      - mongodb
+    env_file: .env
+    healthcheck:
+      test: ['CMD', 'python', 'check.py']
+      timeout: 10s
+      retries: 2
