@@ -45,9 +45,6 @@ spec:
           value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         - name: ACCESS_TOKEN_SECRET
           value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        - name: SEARCH
-          value: "what you want to find"
-  restartPolicy: Never
 ```
 
 Now, you will create mongodb and collector pods, and will create a service for mongodb. Type this commands below on your terminal:
