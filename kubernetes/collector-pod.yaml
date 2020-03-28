@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: collector-container
-      image: fernandogbi/twitter-collector:0.1
+      image: fernandogbi/twitter-collector:0.1.1
       env:
         - name: API_KEY
           value: 
@@ -17,6 +17,3 @@ spec:
           value: 
         - name: ACCESS_TOKEN_SECRET
           value: 
-        - name: SEARCH
-          value: 
-  restartPolicy: Never
