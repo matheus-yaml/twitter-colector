@@ -3,7 +3,7 @@ import os
 from pymongo import MongoClient
 import time
 
-tweets = MongoClient(host='mongodb').test.streamingCollector
+tweets = MongoClient(host='mongodb').streamingCollector.tweets_portuguese
 
 class MyStreamListener(tweepy.StreamListener):
 
@@ -23,7 +23,7 @@ def run():
     api = get_api()
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
-    myStream.filter(track=['bh', 'belo','horizonte'])
+    myStream.filter(track=['*'])
 
 
 if __name__ == '__main__':
