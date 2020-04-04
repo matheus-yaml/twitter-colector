@@ -1,0 +1,13 @@
+<html>
+    <button onclick="getData()">atualizar</button>
+    <div id="result">Sem dados</div>
+    <script>
+        function getData(){
+            fetch('http://localhost:5000/api/v1/cache')
+            .then((resp) => resp.json())
+            .then(function(data){
+                document.getElementById("result").innerHTML = JSON.stringify(data, null, 200);
+            })
+        }
+    </script>
+</html>
