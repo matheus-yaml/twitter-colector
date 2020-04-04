@@ -8,13 +8,13 @@ api = Api(app, prefix = '/api/v1')
 class WordCounter(Resource):
     def post(self):
         words = {}
-        for word in request.json['tweet'].split(' '):
+        for word in request.form['tweet'].split(' '):
             if len(word) > 4 and '#' not in word and '@' not in word:
                 if word not in words.keys():
                     words[word] = 1
                 else:
                     words[word] += 1
-        return {'reslt':words}, 200
+        return {'result':words}, 200
 
 api.add_resource(WordCounter,'/counter',methods=['POST'])
 

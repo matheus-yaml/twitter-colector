@@ -26,3 +26,17 @@ services:
     image: counter-words:0.1
     ports:
       - 8080:8080
+
+  redis:
+    image: redis:5.0.8
+    ports:
+      - 6379:6379
+
+  queue:
+    build:
+      context: ./queue
+    image: tweet-queue:0.1
+    ports:
+      - 5000:5000
+    depends_on:
+      - redis
