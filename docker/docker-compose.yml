@@ -19,3 +19,10 @@ services:
       test: ['CMD', 'python', 'check.py']
       timeout: 10s
       retries: 2
+
+  counter:
+    build:
+      context: ./word-counter
+    image: counter-words:0.1
+    ports:
+      - 8080:8080
