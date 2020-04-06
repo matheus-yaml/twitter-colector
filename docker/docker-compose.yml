@@ -11,7 +11,7 @@ services:
   streaming:
     build:
       context: ./streaming-collector
-    image: streaming-collector:0.1
+    image: fernandogbi/streaming-collector:0.1
     depends_on:
       - mongodb
     env_file: .env
@@ -23,7 +23,7 @@ services:
   counter:
     build:
       context: ./word-counter
-    image: counter-words:0.1
+    image: fernandogbi/counter-words:0.1
     ports:
       - 8080:8080
 
@@ -35,7 +35,7 @@ services:
   queue:
     build:
       context: ./queue
-    image: tweet-queue:0.1
+    image: fernandogbi/tweet-queue:0.1
     ports:
       - 5000:5000
     depends_on:
