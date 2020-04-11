@@ -1,12 +1,22 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.4.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-1.4.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-1.4.0.min.js"></script>
+    </head>
     <button onclick="getData()">atualizar</button>
-    <div id="result">Sem dados</div>
+    <div id="chart">Sem dados</div>
     <script>
         function getData(){
             fetch('http://localhost:5000/api/v1/cache')
             .then((resp) => resp.json())
             .then(function(data){
-                document.getElementById("result").innerHTML = JSON.stringify(data, null, 200);
+                //document.getElementById("result").innerHTML = JSON.stringify(data, null, 200);
+                document.getElementById('chart').textContent = '';
+                Bokeh.embed.embed_item(data);
             })
         }
     </script>

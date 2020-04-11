@@ -3,6 +3,8 @@ from flask import Flask
 from flask_restful import Api, Resource
 from flask_cors import CORS
 from flask import request
+from bokeh.plotting import figure
+from bokeh.embed import json_item
 import requests
 
 
@@ -17,7 +19,10 @@ class Cache(Resource):
         for i in conn.keys():
             if int(conn.get(i)) > 1:
                 results[i.decode(encoding="utf-8")] = int(conn.get(i))
-        return results, 200
+        results_chart = figure(x_range=list(results.keys()))
+        results_chart.vbar(x=list(results.keys()), top=list(results.values()), width=0.5)
+        results_chart.xaxis.major_label_orientation = 3.14/4
+        return json_item(results_chart,"chart"), 200
 
 
     def post(self):
