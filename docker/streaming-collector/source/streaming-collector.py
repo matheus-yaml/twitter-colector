@@ -12,7 +12,7 @@ class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         if status.lang == 'pt':
             print(status.text)
-            requests.post('http://queue:5000/api/v1/cache',data = {'text': status.text})
+            requests.post('http://queue:5000/api/v1/cache',json = {'tweet': status.text})
             tweets.insert_one(status._json)
 
 

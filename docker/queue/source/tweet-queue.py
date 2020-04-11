@@ -27,7 +27,8 @@ class Cache(Resource):
 
     def post(self):
         conn = Redis(host='redis',port=6379,db=0)
-        response = requests.post("http://counter:8080/api/v1/counter", data = {"tweet":request.form['text']})
+        app.logger.info(request.json)
+        response = requests.post("http://counter:8080/api/v1/counter", json = request.json)
         words = eval(response.content)['result']
         for word in words:
             if conn.get(word) == None:

@@ -8,7 +8,8 @@ api = Api(app, prefix = '/api/v1')
 class WordCounter(Resource):
     def post(self):
         words = {}
-        for word in request.form['tweet'].split(' '):
+        for word in request.json['tweet'].split(' '):
+
             if len(word) > 4 and '#' not in word and '@' not in word:
                 if word not in words.keys():
                     words[word] = 1
