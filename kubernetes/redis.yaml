@@ -27,10 +27,10 @@ spec:
           ports:
             - containerPort: 6379
 
-          resources:
-            limits:
-              memory: "300Mi"
-              cpu: "200m"
+          # resources:
+          #   limits:
+          #     memory: "300Mi"
+          #     cpu: "200m"
 
 ---
 
