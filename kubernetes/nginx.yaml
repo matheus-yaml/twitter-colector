@@ -13,13 +13,6 @@ spec:
         app: nginx
     spec:
       restartPolicy: Always
-      nodeSelector:
-        nginx: truee
-
-      volumes:
-      - name: data-nginx
-        hostPath:
-          path: /opt/nginx
 
       containers:
         - name: nginx
@@ -30,10 +23,6 @@ spec:
           env:
             - name: TZ
               value: America/Recife
-
-          volumeMounts:
-            - name: data-nginx
-              mountPath: "/etc/nginx/"
 
 ---
 apiVersion: v1
