@@ -5,14 +5,14 @@ import time
 import requests
 
 
-tweets = MongoClient(host='mongodb').streamingCollector.tweets_portuguese
+tweets = MongoClient(host='10.96.0.2').streamingCollector.tweets_portuguese
 
 class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         if status.lang == 'pt':
             print(status.text)
-            requests.post('http://queue:5000/api/v1/cache',json = {'tweet': status.text})
+            requests.post('http://10.96.0.3:5000/api/v1/cache',json = {'tweet': status.text})
             tweets.insert_one(status._json)
 
 

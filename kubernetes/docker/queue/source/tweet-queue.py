@@ -14,7 +14,7 @@ api = Api(app, prefix = '/api/v1')
 
 class Cache(Resource):
     def get(self):
-        conn = Redis(host='redis',port=6379,db=0)
+        conn = Redis(host='10.96.0.5',port=6379,db=0)
         results = {}
         for i in conn.keys():
             if int(conn.get(i)) > 1:
@@ -28,7 +28,7 @@ class Cache(Resource):
     def post(self):
         conn = Redis(host='redis',port=6379,db=0)
         app.logger.info(request.json)
-        response = requests.post("http://counter:8080/api/v1/counter", json = request.json)
+        response = requests.post("http://10.96.0.4:8080/api/v1/counter", json = request.json)
         words = eval(response.content)['result']
         for word in words:
             if conn.get(word) == None:
