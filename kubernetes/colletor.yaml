@@ -49,6 +49,9 @@ spec:
                   name: twitter-secrets
                   key: access-token-secret
 
+            - name: SEARCH
+              value: "[brasil]"
+
               resources:
                 limits:
                   memory: "300Mi"
