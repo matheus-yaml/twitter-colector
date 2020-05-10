@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: counter
-          image: matheus/counter-words:0.1
+          image: matheusoliv/counter-words:0.1
           ports:
             - containerPort: 8080
 
