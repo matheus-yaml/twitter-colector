@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: collector
-          image: matheusoliv/streaming-collector:0.1.1
+          image: matheusoliv/streaming-collector:0.1
           env:
             - name: API_KEY
               valueFrom:
