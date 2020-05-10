@@ -43,4 +43,4 @@ spec:
   clusterIP: 10.96.0.6
   type: LoadBalancer
   externalIPs:
-  - 10.0.0.218 #your internal ip
+  - 172.42.42.100 #your internal ip
