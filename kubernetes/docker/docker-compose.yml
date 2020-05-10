@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: mongo:4.2
+    volumes:
+      - ./mongodb:/data/db
+    ports:
+      - 27017:27017
+
+  streaming:
+    build:
+      context: ./streaming-collector
+    image: fernandogbi/streaming-collector:0.1
+    depends_on:
+      - mongodb
+      - queue
+    env_file: .env
+    healthcheck:
+      test: ['CMD', 'python', 'check.py']
+      timeout: 10s
+      retries: 2
+
+  counter:
+    build:
+      context: ./word-counter
+    image: fernandogbi/counter-words:0.1
+    ports:
+      - 8080:8080
+
+  redis:
+    image: redis:5.0.8
+    ports:
+      - 6379:6379
+
+  queue:
+    build:
+      context: ./queue
+    image: fernandogbi/tweet-queue:0.1
+    ports:
+      - 5000:5000
+    depends_on:
+      - redis

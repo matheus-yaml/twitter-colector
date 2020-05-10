@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      restartPolicy: Always
+      nodeSelector:
+        nginx: truee
+
+      volumes:
+      - name: data-nginx
+        hostPath:
+          path: /opt/nginx
+
+      containers:
+        - name: nginx
+          image: matheusoliv/nginx-chart:0.1 
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          env:
+            - name: TZ
+              value: America/Recife
+
+          volumeMounts:
+            - name: data-nginx
+              mountPath: "/etc/nginx/"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+
+  clusterIP: 10.96.0.6
+  type: LoadBalancer
+  externalIPs:
+  - 10.0.0.218 #your internal ip

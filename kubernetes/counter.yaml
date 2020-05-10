@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter
+spec:
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector: 
+    matchLabels: 
+      app: counter
+  template:
+    metadata:
+      labels:
+        app: counter
+    spec:
+      restartPolicy: Always
+
+      containers:
+        - name: counter
+          image: fernandogbi/counter-words:0.1
+          ports:
+            - containerPort: 8080
+
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "200m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter
+spec:
+  selector:
+    app: counter
+  ports:
+    - name: counter-port
+      port: 8080
+      targetPort: 8080
+      
+  clusterIP: 10.96.0.4
+  type: LoadBalancer
+  externalIPs:
+  - 10.0.0.218 #your internal ip
+
+
+
+

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue
+spec:
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector: 
+    matchLabels: 
+      app: queue
+  template:
+    metadata:
+      labels:
+        app: queue
+    spec:
+      restartPolicy: Always
+
+      containers:
+        - name: queue
+          image: fernandogbi/tweet-queue:0.1
+          ports:
+            - containerPort: 5000
+
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "200m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue
+spec:
+  selector:
+    app: queue
+  ports:
+    - name: queue-port
+      port: 5000
+      targetPort: 5000
+      
+  clusterIP: 10.96.0.3
+  type: LoadBalancer
+  externalIPs:
+  - 10.0.0.218 #your internal ip
+
+
+
+
