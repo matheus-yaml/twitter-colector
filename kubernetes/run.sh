@@ -7,3 +7,4 @@ kubectl apply -f counter.yaml
 kubectl apply -f mongo.yaml
 kubectl apply -f queue.yaml
 kubectl apply -f redis.yaml
+kubectl apply -f nginx.yaml
