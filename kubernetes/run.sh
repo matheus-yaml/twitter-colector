@@ -1,6 +1,6 @@
 #!/bin/bash
+PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/vagrant/.local/bin:/home/vagrant/bin
 
-source app/.env
 bash env-set-kubectl.sh
 kubectl apply -f colletor.yaml
 kubectl apply -f counter.yaml

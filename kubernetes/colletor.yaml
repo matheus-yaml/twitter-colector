@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: collector
-          image: fernandogbi/twitter-collector:0.1.1
+          image: matheus/twitter-collector:0.1.1
           env:
             - name: API_KEY
               valueFrom:
@@ -55,10 +55,10 @@ spec:
                   name: twitter-secrets
                   key: search
 
-              resources:
-                limits:
-                  memory: "300Mi"
-                  cpu: "200m"
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "200m"
 
 
 

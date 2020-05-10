@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: queue
-          image: fernandogbi/tweet-queue:0.1
+          image: matheus/tweet-queue:0.1
           ports:
             - containerPort: 5000
 
