@@ -10,3 +10,4 @@ Steps to use:
 	SEARCH="[word that you want find on tweets]"
 
 2 - Run run.sh file
+
