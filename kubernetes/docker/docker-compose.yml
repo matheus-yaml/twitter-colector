@@ -11,7 +11,7 @@ services:
   streaming:
     build:
       context: ./streaming-collector
-    image: fernandogbi/streaming-collector:0.1
+    image: matheusoliv/streaming-collector:0.1
     depends_on:
       - mongodb
       - queue
@@ -24,7 +24,7 @@ services:
   counter:
     build:
       context: ./word-counter
-    image: fernandogbi/counter-words:0.1
+    image: matheusoliv/counter-words:0.1
     ports:
       - 8080:8080
 
@@ -36,7 +36,7 @@ services:
   queue:
     build:
       context: ./queue
-    image: fernandogbi/tweet-queue:0.1
+    image: matheusoliv/tweet-queue:0.1
     ports:
       - 5000:5000
     depends_on:
