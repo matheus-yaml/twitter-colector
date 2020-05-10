@@ -26,13 +26,28 @@ spec:
           image: fernandogbi/twitter-collector:0.1.1
           env:
             - name: API_KEY
-              value: 
+              valueFrom:
+                secretKeyRef:
+                  name: twitter-secrets
+                  key: api-key
+
             - name: API_SECRET_KEY
-              value: 
+              valueFrom:
+                secretKeyRef:
+                  name: twitter-secrets
+                  key: api-secret-key
+
             - name: ACCESS_TOKEN
-              value: 
+              valueFrom:
+                secretKeyRef:
+                  name: twitter-secrets
+                  key: access-token
+
             - name: ACCESS_TOKEN_SECRET
-              value: 
+              valueFrom:
+                secretKeyRef:
+                  name: twitter-secrets
+                  key: access-token-secret
 
               resources:
                 limits:
